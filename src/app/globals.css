@@ -1,0 +1,386 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ============================================
+       LIGHT MODE — Construction Platform
+       Clean white surfaces, safety orange accents
+       ============================================ */
+    --background: 0 0% 100%;
+    --foreground: 210 24% 16%; /* steel-900 */
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 24% 16%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 24% 16%;
+
+    /* Primary — Safety Orange (brand-500) */
+    --primary: 15 100% 56%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary — Steel dark for buttons */
+    --secondary: 210 24% 16%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 210 16% 96%; /* steel-50 */
+    --muted-foreground: 210 9% 46%; /* steel-500 */
+
+    /* Accent — Hi-Vis Yellow */
+    --accent: 45 93% 47%;
+    --accent-foreground: 210 24% 16%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 16% 90%;
+    --input: 210 16% 90%;
+    --ring: 15 100% 56%; /* matches primary */
+
+    --success: 142 71% 45%;
+    --warning: 38 92% 50%;
+    --info: 199 89% 48%;
+
+    --shadow-color: 210 24% 16%;
+    --elev-1: 0 1px 2px hsl(var(--shadow-color) / 0.06),
+      0 1px 3px hsl(var(--shadow-color) / 0.05);
+    --elev-2: 0 6px 18px -4px hsl(var(--shadow-color) / 0.1),
+      0 2px 6px -2px hsl(var(--shadow-color) / 0.06);
+    --elev-3: 0 20px 50px -16px hsl(var(--shadow-color) / 0.2),
+      0 8px 20px -10px hsl(var(--shadow-color) / 0.12);
+
+    --radius: 0.625rem;
+  }
+
+  .dark {
+    /* ============================================
+       DARK MODE — Industrial Steel
+       Dark steel surfaces, glowing orange accents
+       ============================================ */
+    --background: 210 30% 8%; /* steel-950 */
+    --foreground: 210 16% 96%;
+
+    --card: 210 24% 12%; /* steel-900 lighter */
+    --card-foreground: 210 16% 96%;
+
+    --popover: 210 30% 8%;
+    --popover-foreground: 210 16% 96%;
+
+    /* Primary — Brighter orange for dark contrast */
+    --primary: 18 100% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 16% 22%;
+    --secondary-foreground: 210 16% 96%;
+
+    --muted: 210 24% 14%;
+    --muted-foreground: 210 12% 65%;
+
+    /* Accent — Brighter hi-vis yellow for dark mode */
+    --accent: 48 96% 53%;
+    --accent-foreground: 210 30% 8%;
+
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 16% 20%;
+    --input: 210 16% 20%;
+    --ring: 18 100% 60%;
+
+    --success: 142 65% 50%;
+    --warning: 38 90% 56%;
+    --info: 199 89% 58%;
+
+    --shadow-color: 210 50% 2%;
+    --elev-1: 0 1px 2px hsl(var(--shadow-color) / 0.5);
+    --elev-2: 0 8px 22px -6px hsl(var(--shadow-color) / 0.6);
+    --elev-3: 0 24px 56px -18px hsl(var(--shadow-color) / 0.8);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    /* Default to LIGHT mode for the recruitment platform (LinkedIn / Naukri style) */
+    color-scheme: light;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "ss01";
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight;
+    font-feature-settings: "ss01", "cv01";
+  }
+  ::selection {
+    background-color: hsl(var(--primary) / 0.25);
+    color: hsl(var(--foreground));
+  }
+
+  /* Custom scrollbar — construction themed */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.5);
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.8);
+  }
+}
+
+@layer utilities {
+  /* ============================================
+     CONSTRUCTION-THEMED GRADIENT BACKGROUNDS
+     ============================================ */
+  .gradient-construction {
+    background:
+      radial-gradient(70% 60% at 50% 0%, hsl(var(--primary) / 0.12) 0%, transparent 65%),
+      radial-gradient(50% 50% at 100% 0%, hsl(var(--accent) / 0.08) 0%, transparent 60%),
+      hsl(var(--background));
+  }
+
+  .gradient-hero {
+    background:
+      radial-gradient(80% 60% at 20% 10%, hsl(var(--primary) / 0.18) 0%, transparent 55%),
+      radial-gradient(60% 50% at 90% 20%, hsl(var(--accent) / 0.12) 0%, transparent 55%),
+      linear-gradient(180deg, hsl(var(--background)) 0%, hsl(var(--muted) / 0.5) 100%);
+  }
+
+  .gradient-dark-hero {
+    background:
+      radial-gradient(70% 50% at 30% 20%, hsl(18 100% 50% / 0.15) 0%, transparent 55%),
+      linear-gradient(135deg, hsl(210 30% 8%) 0%, hsl(210 24% 12%) 50%, hsl(210 30% 8%) 100%);
+  }
+
+  /* ============================================
+     BLUEPRINT / GRID PATTERNS
+     ============================================ */
+  .blueprint-pattern {
+    background-image:
+      linear-gradient(to right, hsl(var(--primary) / 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--primary) / 0.06) 1px, transparent 1px),
+      linear-gradient(to right, hsl(var(--foreground) / 0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--foreground) / 0.03) 1px, transparent 1px);
+    background-size: 100px 100px, 100px 100px, 25px 25px, 25px 25px;
+  }
+
+  .grid-pattern-soft {
+    background-image:
+      linear-gradient(to right, hsl(var(--foreground) / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--foreground) / 0.05) 1px, transparent 1px);
+    background-size: 46px 46px;
+    -webkit-mask-image: radial-gradient(circle at center, black, transparent 75%);
+    mask-image: radial-gradient(circle at center, black, transparent 75%);
+  }
+
+  .dots-pattern {
+    background-image: radial-gradient(hsl(var(--foreground) / 0.12) 1.5px, transparent 1.5px);
+    background-size: 24px 24px;
+  }
+
+  /* ============================================
+     HAZARD STRIPES — Construction Safety Tape
+     ============================================ */
+  .hazard-stripes {
+    background: repeating-linear-gradient(
+      45deg,
+      hsl(45 93% 47%) 0,
+      hsl(45 93% 47%) 14px,
+      hsl(210 24% 16%) 14px,
+      hsl(210 24% 16%) 28px
+    );
+  }
+
+  /* ============================================
+     NOISE TEXTURE
+     ============================================ */
+  .noise-texture {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.04;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+
+  /* ============================================
+     ELEVATION SHADOWS
+     ============================================ */
+  .elev-1 { box-shadow: var(--elev-1); }
+  .elev-2 { box-shadow: var(--elev-2); }
+  .elev-3 { box-shadow: var(--elev-3); }
+
+  /* ============================================
+     TEXT GRADIENTS
+     ============================================ */
+  .text-gradient-brand {
+    background: linear-gradient(100deg,
+      hsl(15 100% 56%) 0%,
+      hsl(25 100% 60%) 50%,
+      hsl(15 100% 56%) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .text-gradient-hiviz {
+    background: linear-gradient(100deg,
+      hsl(45 93% 47%) 0%,
+      hsl(50 100% 60%) 50%,
+      hsl(45 93% 47%) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* ============================================
+     ANIMATED BORDERS / GLOW EFFECTS
+     ============================================ */
+  .border-glow {
+    position: relative;
+  }
+  .border-glow::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(130deg,
+      hsl(var(--primary) / 0.6),
+      transparent 38%,
+      transparent 62%,
+      hsl(var(--accent) / 0.3));
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* ============================================
+     GLASS / FROSTED CARDS
+     ============================================ */
+  .glass {
+    background: hsl(var(--card) / 0.7);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    border: 1px solid hsl(var(--border) / 0.5);
+  }
+
+  .glass-dark {
+    background: hsl(210 30% 8% / 0.75);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid hsl(var(--border) / 0.3);
+  }
+
+  /* ============================================
+     CARD HOVER EFFECTS
+     ============================================ */
+  .card-lift {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .card-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--elev-3);
+  }
+
+  /* ============================================
+     STATUS BADGE COLORS
+     ============================================ */
+  .badge-success {
+    background-color: hsl(var(--success) / 0.15);
+    color: hsl(var(--success));
+    border: 1px solid hsl(var(--success) / 0.3);
+  }
+  .badge-warning {
+    background-color: hsl(var(--warning) / 0.15);
+    color: hsl(var(--warning));
+    border: 1px solid hsl(var(--warning) / 0.3);
+  }
+  .badge-info {
+    background-color: hsl(var(--info) / 0.15);
+    color: hsl(var(--info));
+    border: 1px solid hsl(var(--info) / 0.3);
+  }
+  .badge-destructive {
+    background-color: hsl(var(--destructive) / 0.15);
+    color: hsl(var(--destructive));
+    border: 1px solid hsl(var(--destructive) / 0.3);
+  }
+
+  /* ============================================
+     REVEAL ANIMATION
+     ============================================ */
+  @keyframes reveal-fade-up {
+    0% {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .reveal {
+    opacity: 0;
+    animation: reveal-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  /* ============================================
+     CONSTRUCTION DIVIDER (Hazard tape style)
+     ============================================ */
+  .divider-hazard {
+    height: 4px;
+    background: repeating-linear-gradient(
+      45deg,
+      hsl(var(--accent)) 0,
+      hsl(var(--accent)) 12px,
+      hsl(var(--foreground)) 12px,
+      hsl(var(--foreground)) 24px
+    );
+  }
+
+  /* ============================================
+     LINE CLAMP UTILITIES
+     ============================================ */
+  .line-clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .card-lift {
+    opacity: 1 !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}

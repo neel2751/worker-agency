@@ -1,0 +1,16 @@
+import { Container } from "@/components/layout/Container"
+
+export function ResourceHubHero() {
+  return (
+    <div className="pt-24 pb-16 bg-slate-50 dark:bg-slate-900/50 border-b">
+      <Container className="max-w-4xl text-center">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+          Resource Hub
+        </h1>
+        <p className="text-xl text-muted-foreground leading-relaxed">
+          Deep-dive technical guides, architectural whitepapers, and webinars built exclusively for Workday integration professionals.
+        </p>
+      </Container>
+    </div>
+  )
+}
